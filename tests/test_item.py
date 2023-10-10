@@ -20,11 +20,20 @@ class Test():
         assert item1.name == "telephone"
 
         Item.instantiate_from_csv("../src/items.csv")
-        assert len(Item.all) == 7
-        assert Item.all[3].price == 1000
-        assert Item.all[5].quantity == 5
+        assert len(Item.all) == 5
+        assert Item.all[1].price == 1000
+        assert Item.all[3].quantity == 5
+
     def test_string_to_number(self):
         assert Item.string_to_number('5') == 5
         assert Item.string_to_number('5.0') == 5
         assert Item.string_to_number('5.5') == 5
         assert Item.string_to_number('3401.67584') == 3401
+
+    def test_for_repr(self):
+        assert repr(item) == "Item('Бананы', 20, 1000)"
+        assert repr(item1) == "Item('TV', 200000, 10)"
+
+    def test_for_str(self):
+        assert str(item) == 'Бананы'
+        assert str(item1) == 'TV'
