@@ -1,10 +1,10 @@
 from src.item import Item
 import pytest
-
 item = Item("Бананы", 20, 1000)
 item1 = Item("TV", 200000, 10)
 
-class Test():
+
+class TestItem:
     def test_calculate_total_price(self):
         assert item.calculate_total_price() == 20000
 
