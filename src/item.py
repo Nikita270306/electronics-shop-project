@@ -1,5 +1,5 @@
 import csv
-
+from src.personal_error.csv_error import InstantiateCSVError
 
 class Item:
     """
@@ -64,3 +64,19 @@ class Item:
     @staticmethod
     def string_to_number(str_):
         return int(float(str_))
+
+    @classmethod
+    def instantiate_from_csv(cls, path='../src/items.csv'):
+        try:
+            with open(path, encoding='utf8') as file:
+                checker = csv.DictReader(file)
+            try:
+                for line in checker:
+                    name, price, quantity = line['name'], line['price'], line['quantity']
+                    cls(name, price, quantity)
+            except Exception:
+                raise InstantiateCSVError
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
+        else:
+            return "Инициализация экземпляров класса прошла успешно!"
