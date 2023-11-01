@@ -74,9 +74,9 @@ class Item:
                 for line in checker:
                     name, price, quantity = line['name'], line['price'], line['quantity']
                     cls(name, price, quantity)
-            except Exception:
-                raise InstantiateCSVError
+            except InstantiateCSVError:
+                raise InstantiateCSVError("C файлом что-то не то")
         except FileNotFoundError:
-            raise FileNotFoundError("Отсутствует файл item.csv")
+            raise FileNotFoundError("Отсутствует файл")
         else:
             return "Инициализация экземпляров класса прошла успешно!"
